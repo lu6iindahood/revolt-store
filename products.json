@@ -1,0 +1,292 @@
+[
+  {
+    "id": "perm-unban",
+    "name": "perm-unban",
+    "title": "Permanent HWID Unban",
+    "category": "UNBAN & DMA",
+    "category_code": "GENERAL",
+    "badge": "UNDETECTED",
+    "isUnban": true,
+    "price": { "lite": 25, "alpha": 50 },
+    "description": "Permanent Hardware ID spoofer supporting all motherboards (Asus, Gigabyte, MSI, ASRock) and modern anti-cheats (Vanguard, EAC, BE).",
+    "features": [
+      "Permanent Registry & BIOS Flash Spoofer",
+      "Vanguard & EAC / BE Bypass",
+      "Auto Clean Traces & Cleaner Included",
+      "Instant Setup & 24/7 Support"
+    ],
+    "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "revolt-dma",
+    "name": "revolt-dma",
+    "title": "Revolt DMA Hardware Suite",
+    "category": "UNBAN & DMA",
+    "category_code": "GENERAL",
+    "badge": "100% SAFE",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Direct Memory Access custom firmware suite with 2 PC setup for absolute zero detection risk.",
+    "features": [
+      "2 PC DMA Architecture",
+      "Custom PCIe Firmware Pre-flashed",
+      "Ultra Low Latency Radar & ESP",
+      "Supports All Major PC Titles"
+    ],
+    "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "cloud-dma",
+    "name": "cloud-dma",
+    "title": "Cloud DMA Firmware",
+    "category": "UNBAN & DMA",
+    "category_code": "GENERAL",
+    "badge": "CUSTOM FW",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Cloud-synchronized custom firmware algorithms tailored per user device ID.",
+    "features": [
+      "Unique Per-User Firmware Generation",
+      "Web Based DMA Radar Stream",
+      "Anti-EAC / BE DMA Encryption",
+      "Easy Flash Utility"
+    ],
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "valfaker",
+    "name": "valfaker",
+    "title": "Valfaker Internal",
+    "category": "VALORANT",
+    "category_code": "VAL",
+    "badge": "VANGUARD BYPASS",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Premium internal tool for Valorant featuring smooth aimbot, visible check ESP, and streamproof overlay.",
+    "features": [
+      "Vanguard Ring 0 Bypass",
+      "Customizable Humanized Aimbot & Recoil",
+      "Agent ESP, Spike Timer & Health Bars",
+      "OBS Streamproof"
+    ],
+    "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "val-insane",
+    "name": "val-insane",
+    "title": "Val Insane Full Suite",
+    "category": "VALORANT",
+    "category_code": "VAL",
+    "badge": "SLOTTED",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Private slotted Valorant package for competitive players aiming for Radiant rank.",
+    "features": [
+      "Limited 20 Slots Per Region",
+      "RCS, Triggerbot & Silent Aim",
+      "Skeleton ESP & Radar Mini-map",
+      "Auto Updates Included"
+    ],
+    "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "val-lite",
+    "name": "val-lite",
+    "title": "Val Lite ESP Only",
+    "category": "VALORANT",
+    "category_code": "VAL",
+    "badge": "UNDETECTED",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Lightweight external wallhack for Valorant with maximum performance and minimal risk.",
+    "features": [
+      "External Non-Memory Injector",
+      "Boxes, Distance & Head Dot ESP",
+      "High FPS & Zero Lag Impact",
+      "Supports Windows 10 & 11"
+    ],
+    "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "sand-private",
+    "name": "sand-private",
+    "title": "Sand Private Fortnite",
+    "category": "FORTNITE",
+    "category_code": "FN",
+    "badge": "PRIVATE",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Private external Fortnite suite optimized for Tournament and Ranked modes.",
+    "features": [
+      "Advanced Memory Encryption",
+      "Smooth FOV Aimbot & Bullet Prediction",
+      "Item, Chest & Llama ESP",
+      "Internal Spoofer Included"
+    ],
+    "image": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "fortnite-private",
+    "name": "fortnite-private",
+    "title": "Fortnite Private Internal",
+    "category": "FORTNITE",
+    "category_code": "FN",
+    "badge": "SLOTTED",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Fully featured internal build for Fortnite with instant weapon swap and projectile prediction.",
+    "features": [
+      "EAC & BattlEye Dual Bypass",
+      "Silent Aim & Spinbot Mode",
+      "Full Chams & Wireframe Player ESP",
+      "Automated Safe Injector"
+    ],
+    "image": "https://images.unsplash.com/photo-1589241062272-c0a000072dfa?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "cod-private",
+    "name": "cod-private",
+    "title": "COD Warzone & MW3 Private",
+    "category": "CALL OF DUTY",
+    "category_code": "COD",
+    "badge": "RICOCHET BYPASS",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Undetected tool for Call of Duty Warzone, Modern Warfare 3 & BO6 featuring full Unlock All.",
+    "features": [
+      "Ricochet Driver Kernel Bypass",
+      "Unlock All Camos, Operators & Blueprints",
+      "Aimbot with Bone Prioritization",
+      "2D Radar & Loot ESP Filter"
+    ],
+    "image": "https://images.unsplash.com/photo-1552824722-680479708ab3?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "bf6-ghost",
+    "name": "bf6-ghost",
+    "title": "Battlefield Ghost Edition",
+    "category": "BATTLEFIELD",
+    "category_code": "B6",
+    "badge": "UNDETECTED",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Elite tool designed for Battlefield 2042 & upcoming titles with vehicle & infantry ESP.",
+    "features": [
+      "Vehicle & Infantry Aimbot",
+      "3D Player Boxes & Health Gauges",
+      "No Recoil & No Spread",
+      "Stealth Injector Technology"
+    ],
+    "image": "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "r6-eft",
+    "name": "r6-eft",
+    "title": "Rainbow Six Siege Private",
+    "category": "RAINBOW SIX",
+    "category_code": "R6",
+    "badge": "SAFE",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Undetected R6 Siege external hack with gadget reveal, soft aim, and wall outline ESP.",
+    "features": [
+      "Ubisoft QB Driver Bypass",
+      "Gadget, Drone & Operator ESP",
+      "Silent Aim & No Recoil Slider",
+      "Ranked Safe Config Preset"
+    ],
+    "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "eft-private",
+    "name": "eft-private",
+    "title": "Escape From Tarkov Private",
+    "category": "TARKOV (EFT)",
+    "category_code": "EFT",
+    "badge": "HARDCORE",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Comprehensive Tarkov cheat with Quest helper, High-value Loot filter & Silent Aim.",
+    "features": [
+      "BattlEye Kernel Bypass",
+      "Loot Price Filter (Roubles/Slot)",
+      "Quest Item Finder & Exfil ESP",
+      "Infinite Stamina & Thermal Vision"
+    ],
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "rust-safe",
+    "name": "rust-safe",
+    "title": "Rust Safe External",
+    "category": "RUST",
+    "category_code": "RUST",
+    "badge": "EAC SAFE",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "External Rust assistant for recoil control, resource node ESP, and player tracking.",
+    "features": [
+      "Stand-alone External Driver",
+      "Custom Recoil Scripting Engine",
+      "Sulfur, Metal & Stash ESP",
+      "Base Code Lock & Turret Reveal"
+    ],
+    "image": "https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "apex-ultra",
+    "name": "apex-ultra",
+    "title": "Apex Legends Ultra",
+    "category": "APEX LEGENDS",
+    "category_code": "APEX",
+    "badge": "PRED PROOF",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Predator tier tool for Apex Legends featuring smooth human aim, glow ESP, and triggerbot.",
+    "features": [
+      "Smooth Aim with Velocity Prediction",
+      "Custom Glow Chams & Armor ESP",
+      "Item Filter & Deathbox Radar",
+      "Compatible with Controller & KNM"
+    ],
+    "image": "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "arc-slotted",
+    "name": "arc-slotted",
+    "title": "Arc Raiders Slotted",
+    "category": "ARC RAIDERS",
+    "category_code": "ARC",
+    "badge": "SLOTTED",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Private slotted cheat for Arc Raiders featuring bot ESP, weak spot aimbot, and loot radar.",
+    "features": [
+      "ARC Robot Weak Spot Targeting",
+      "Player & Extractor ESP",
+      "No Sway & Instant Reload",
+      "Internal Hardware Spoofer"
+    ],
+    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "delta-private",
+    "name": "delta-private",
+    "title": "League of Legends Delta",
+    "category": "LEAGUE OF LEGENDS",
+    "category_code": "LOL",
+    "badge": "VANGUARD SAFE",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Advanced LoL Scripting suite with orbwalker, dodge engine, and champion scripts.",
+    "features": [
+      "Vanguard Compatible Script Engine",
+      "Humanized Evade & Skillshot Dodge",
+      "Last Hit, Harass & Auto Combo",
+      "All Champions Supported"
+    ],
+    "image": "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "abi-private",
+    "name": "abi-private",
+    "title": "Arena Breakout Infinite Private",
+    "category": "ARENA BREAKOUT",
+    "category_code": "ABI",
+    "badge": "UNDETECTED",
+    "price": { "weekly": 20, "monthly": 40, "lifetime": 120 },
+    "description": "Private tool for Arena Breakout Infinite with loot price calculator, Silent Aim & Exfil ESP.",
+    "features": [
+      "ACE Anti-Cheat Bypass",
+      "High Value Gear & Weapon ESP",
+      "Silent Aimbot & Recoil Lock",
+      "Real-time Radar Overlay"
+    ],
+    "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80"
+  }
+]

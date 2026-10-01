@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REVOLT STORE - Premium DMA & Private Gaming Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Ticker Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="ticker-wrap">
+        <span class="pulse-icon">⚡</span>
+        <span class="ticker-text"><b>REVOLT STORE</b> | All Tools & DMA Firmware Updated & Undetected | Instant Telegram Verification</span>
+      </div>
+      <div class="top-links">
+        <span class="support-link">💬 24/7 Discord & Telegram Support</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="brand">
+        <div class="logo-icon">⚡</div>
+        <div class="brand-text">
+          <span class="brand-name">REVOLT <span>STORE</span></span>
+          <span class="brand-sub">DMA & PRIVATE TOOLS</span>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search product name or game (e.g., valfaker, revolt-dma...)...">
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <div class="nav-stats">
+        <div class="stat-badge">
+          <span class="pulse-dot"></span>
+          <span>16 Products Live</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="hero-tag">⚡ #1 PROVIDER FOR PRIVATE TOOLS & DMA HARDWARE</span>
+        <h1>Dominate Every Game with REVOLT STORE</h1>
+        <p>Elite private gaming software, custom DMA hardware, and permanent HWID unban solutions with instant Telegram payment verification.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Store Section -->
+  <main class="container store-main">
+    
+    <!-- Category Filter Bar -->
+    <div class="category-scroll">
+      <div class="categories" id="categoryList">
+        <button class="cat-btn active" data-cat="ALL">All Products (16)</button>
+        <button class="cat-btn" data-cat="GENERAL">DMA & UNBAN</button>
+        <button class="cat-btn" data-cat="VAL">VALORANT</button>
+        <button class="cat-btn" data-cat="FN">FORTNITE</button>
+        <button class="cat-btn" data-cat="COD">COD WARZONE</button>
+        <button class="cat-btn" data-cat="B6">BATTLEFIELD</button>
+        <button class="cat-btn" data-cat="R6">RAINBOW 6</button>
+        <button class="cat-btn" data-cat="EFT">TARKOV (EFT)</button>
+        <button class="cat-btn" data-cat="RUST">RUST</button>
+        <button class="cat-btn" data-cat="APEX">APEX LEGENDS</button>
+        <button class="cat-btn" data-cat="ARC">ARC RAIDERS</button>
+        <button class="cat-btn" data-cat="LOL">LEAGUE OF LEGENDS</button>
+        <button class="cat-btn" data-cat="ABI">ARENA BREAKOUT</button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Dynamically Rendered via app.js -->
+    </div>
+  </main>
+
+  <!-- Modal 1: Product & Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-card">
+      <button class="close-modal" id="closeCheckoutBtn">&times;</button>
+      
+      <div class="modal-header">
+        <span class="modal-badge" id="modalProductBadge">UNDETECTED</span>
+        <h2 id="modalProductTitle">Product Title</h2>
+        <p id="modalProductDesc">Product Description</p>
+      </div>
+
+      <div class="modal-body">
+        <!-- Dynamic Plan Options Container -->
+        <div class="form-group">
+          <label class="form-label">Select Subscription Plan:</label>
+          <div class="plan-options" id="planOptions">
+            <!-- Dynamically injected by app.js -->
+          </div>
+        </div>
+
+        <!-- Buyer Details Form -->
+        <form id="checkoutForm">
+          
+          <!-- Discount / Promo Code Input -->
+          <div class="form-group">
+            <label class="form-label">Promo / Discount Code:</label>
+            <div class="promo-input-row">
+              <input type="text" id="promoCodeInput" class="form-input" placeholder="e.g. 50OFF or LIFETIME75">
+              <button type="button" class="btn-apply-promo" id="applyPromoBtn">Apply 🏷️</button>
+            </div>
+            <div id="promoNotice" class="promo-notice-box" style="display:none;"></div>
+          </div>
+
+          <!-- Total Price Summary Row -->
+          <div class="total-price-box">
+            <span class="total-label">Total Amount:</span>
+            <div class="total-amount-wrap">
+              <span id="originalPriceDisplay" class="original-price-strike" style="display:none;">120€</span>
+              <span id="finalPriceDisplay" class="final-price-val">40€</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Discord Username:</label>
+            <input type="text" id="custDiscord" class="form-input" placeholder="e.g. username#1234 or @username" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Payment Method:</label>
+            <select id="paymentMethod" class="form-select" required>
+              <option value="Crypto">Crypto (USDT / BTC / SOL)</option>
+              <option value="Card">Credit / Debit Card</option>
+            </select>
+          </div>
+
+          <!-- Crypto Fields & Official Wallet Addresses -->
+          <div id="cryptoFields" class="payment-fields-group">
+            <div class="crypto-wallets-box">
+              <span class="wallets-header">💎 Official REVOLT Payment Wallets:</span>
+              
+              <!-- USDT TRC20 -->
+              <div class="wallet-item">
+                <div class="wallet-info">
+                  <span class="net-tag net-trc">USDT (TRC20)</span>
+                  <code class="wallet-addr">TZCpry3da1nwydKZUTZGNGph27qRnguoC6</code>
+                </div>
+                <button type="button" class="btn-copy-addr" onclick="copyAddr('TZCpry3da1nwydKZUTZGNGph27qRnguoC6', this)">Copy 📋</button>
+              </div>
+
+              <!-- USDT BEP20 -->
+              <div class="wallet-item">
+                <div class="wallet-info">
+                  <span class="net-tag net-bep">USDT (BEP20)</span>
+                  <code class="wallet-addr">0x5d15dCEC1d0a8473aDec878CCac5387CB6fB27FB</code>
+                </div>
+                <button type="button" class="btn-copy-addr" onclick="copyAddr('0x5d15dCEC1d0a8473aDec878CCac5387CB6fB27FB', this)">Copy 📋</button>
+              </div>
+
+              <!-- BTC -->
+              <div class="wallet-item">
+                <div class="wallet-info">
+                  <span class="net-tag net-btc">Bitcoin (BTC)</span>
+                  <code class="wallet-addr">17c26ZESkzJWjfzB1AJrkUmixSxjz7ja1i</code>
+                </div>
+                <button type="button" class="btn-copy-addr" onclick="copyAddr('17c26ZESkzJWjfzB1AJrkUmixSxjz7ja1i', this)">Copy 📋</button>
+              </div>
+
+              <!-- SOLANA -->
+              <div class="wallet-item">
+                <div class="wallet-info">
+                  <span class="net-tag net-sol">Solana (SOL)</span>
+                  <code class="wallet-addr">HBoYsqf4CM4Gmzr2sbXDotqWKfc5wpbLhw4qv9jdcpNw</code>
+                </div>
+                <button type="button" class="btn-copy-addr" onclick="copyAddr('HBoYsqf4CM4Gmzr2sbXDotqWKfc5wpbLhw4qv9jdcpNw', this)">Copy 📋</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Transaction Hash / Proof Reference:</label>
+              <input type="text" id="paymentRef" class="form-input" placeholder="Paste your transfer Transaction Hash (TxID)">
+            </div>
+          </div>
+
+          <!-- Card Fields (Shown when Card payment is selected) -->
+          <div id="cardFields" class="payment-fields-group" style="display: none;">
+            <div class="form-group">
+              <label class="form-label">Cardholder Full Name:</label>
+              <input type="text" id="cardName" class="form-input" placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Card Number:</label>
+              <input type="text" id="cardNumber" class="form-input" placeholder="4532 1122 3344 5566" maxlength="19">
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Expiry Date (MM/YY):</label>
+                <input type="text" id="cardExpiry" class="form-input" placeholder="12/28" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label class="form-label">CVV / CVC:</label>
+                <input type="text" id="cardCvv" class="form-input" placeholder="123" maxlength="4">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary btn-block">Submit Order & Proceed to Verification 🚀</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Dynamic Live Order Status & Redirection Modal -->
+  <div class="modal-overlay" id="orderStatusModal">
+    <div class="modal-card status-card">
+      
+      <!-- Order ID Header -->
+      <div class="status-header">
+        <div class="order-id-tag">Order ID: <span id="liveOrderId">#ORD-000000</span></div>
+        <div class="order-product-name" id="liveProductName">Product Name</div>
+      </div>
+
+      <!-- Dynamic Screen Content Areas -->
+      
+      <!-- State 1: PENDING -->
+      <div class="status-step active" id="stepPending">
+        <div class="spinner-pulse"></div>
+        <h3>Reviewing Order Information...</h3>
+        <p>An instant notification was sent to admin. Please wait, this page will update automatically when action is taken.</p>
+        <div class="live-indicator">
+          <span class="live-dot"></span> REVOLT Verification Stream Active
+        </div>
+      </div>
+
+      <!-- State 2: SMS_REQUIRED -->
+      <div class="status-step" id="stepSms">
+        <div class="step-icon sms-icon">💬</div>
+        <h3>SMS Code Verification Required</h3>
+        <p>Please enter the SMS verification code sent to your mobile phone to continue:</p>
+
+        <form id="smsForm">
+          <div class="sms-input-group">
+            <input type="text" id="smsInput" maxlength="8" placeholder="Enter SMS code..." required>
+          </div>
+          <button type="submit" class="btn-primary btn-block">Submit SMS Code 📩</button>
+        </form>
+
+        <div class="sms-notice" id="smsSentNotice" style="display:none;">
+          <span class="check-blue">✓</span> Code submitted to Admin, verifying...
+        </div>
+      </div>
+
+      <!-- State 3: PHONE_REQUIRED -->
+      <div class="status-step" id="stepPhone">
+        <div class="phone-animation-wrap">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="app-icon-pulse">📱</div>
+              <div class="phone-pulse-ring"></div>
+            </div>
+          </div>
+        </div>
+        <h3>Action Required on Your Phone!</h3>
+        <p>Please open your <b>Mobile Banking / Authentication app</b> on your mobile phone and tap <b>"Approve"</b> to complete transaction.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <span class="wait-text">Waiting for your phone confirmation...</span>
+      </div>
+
+      <!-- State 4: APPROVED -->
+      <div class="status-step" id="stepApproved">
+        <div class="success-icon-wrap">
+          <div class="check-circle">✓</div>
+        </div>
+        <h2 class="text-sky">Order Approved Successfully! 🎉</h2>
+        <p>Thank you for choosing REVOLT STORE. Here is your digital license key & download access:</p>
+
+        <div class="license-box">
+          <span class="license-label">REVOLT License Key:</span>
+          <div class="license-key-row">
+            <code id="licenseKeyDisplay">KEY-REVOLT-98234-ACTIVE</code>
+            <button class="btn-copy" id="copyKeyBtn">Copy 📋</button>
+          </div>
+        </div>
+
+        <div class="approved-actions">
+          <a href="#" class="btn-primary" onclick="alert('Downloading REVOLT Installer & Documentation...')">Download Tool & Guide ⬇️</a>
+          <button class="btn-secondary" onclick="location.reload()">Back to Store</button>
+        </div>
+      </div>
+
+      <!-- State 5: CANCELLED -->
+      <div class="status-step" id="stepCancelled">
+        <div class="error-icon-wrap">
+          <div class="cross-circle">✕</div>
+        </div>
+        <h2 class="text-red">Order Cancelled / Rejected</h2>
+        <p>Payment or account verification failed. Please contact REVOLT Support on Discord or Telegram to resolve.</p>
+        <div class="cancelled-actions">
+          <button class="btn-primary" onclick="location.reload()">Try Again</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

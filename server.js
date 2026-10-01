@@ -20,6 +20,18 @@ let botConfig = {
 const orders = {};
 const sseClients = {}; // orderId -> array of res objects
 
+// Visitor Tracking - stores seen IPs to avoid duplicate notifications
+const visitedIPs = new Map(); // ip -> timestamp
+let totalVisitors = 0;
+
+// Clean old IPs every hour (only keep last 24h)
+setInterval(() => {
+  const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+  for (const [ip, time] of visitedIPs) {
+    if (time < oneDayAgo) visitedIPs.delete(ip);
+  }
+}, 60 * 60 * 1000);
+
 // Load Products
 const productsPath = path.join(__dirname, 'products.json');
 let products = [];
@@ -140,6 +152,103 @@ function getTelegramKeyboard(orderId) {
 // Serve Secret Admin Panel at /admin
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+// --- VISITOR TRACKING ---
+
+// Fetch geolocation info from ip-api.com
+async function getGeoInfo(ip) {
+  return new Promise((resolve) => {
+    // Skip local/private IPs
+    if (ip === '127.0.0.1' || ip === '::1' || ip.startsWith('192.168.') || ip.startsWith('10.')) {
+      resolve({ country: 'Local', city: 'Localhost', isp: 'Local Network', query: ip });
+      return;
+    }
+    
+    const url = `http://ip-api.com/json/${ip}?fields=status,message,country,countryCode,city,region,isp,query`;
+    const http = require('http');
+    http.get(url, (res) => {
+      let body = '';
+      res.on('data', (chunk) => body += chunk);
+      res.on('end', () => {
+        try {
+          const data = JSON.parse(body);
+          if (data.status === 'success') {
+            resolve(data);
+          } else {
+            resolve({ country: 'Unknown', city: 'Unknown', isp: 'Unknown', query: ip });
+          }
+        } catch (e) {
+          resolve({ country: 'Unknown', city: 'Unknown', isp: 'Unknown', query: ip });
+        }
+      });
+    }).on('error', () => {
+      resolve({ country: 'Unknown', city: 'Unknown', isp: 'Unknown', query: ip });
+    });
+  });
+}
+
+// Country code to flag emoji
+function countryFlag(code) {
+  if (!code || code.length !== 2) return '🌍';
+  return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+}
+
+// Visitor tracking endpoint
+app.post('/api/track-visit', async (req, res) => {
+  // Get real IP (Railway uses x-forwarded-for)
+  const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const userAgent = req.headers['user-agent'] || 'Unknown';
+  const referer = req.headers['referer'] || 'Direct';
+  
+  // Check if already seen this IP in the last 24h
+  if (visitedIPs.has(ip)) {
+    return res.json({ status: 'already_tracked' });
+  }
+  
+  // Mark IP as seen
+  visitedIPs.set(ip, Date.now());
+  totalVisitors++;
+  
+  // Get geolocation
+  const geo = await getGeoInfo(ip);
+  const flag = countryFlag(geo.countryCode);
+  
+  // Detect device type from User-Agent
+  let device = '💻 Desktop';
+  if (/mobile|android|iphone|ipad/i.test(userAgent)) device = '📱 Mobile';
+  if (/tablet|ipad/i.test(userAgent)) device = '📱 Tablet';
+  
+  // Detect browser
+  let browser = 'Unknown';
+  if (/chrome/i.test(userAgent)) browser = 'Chrome';
+  if (/firefox/i.test(userAgent)) browser = 'Firefox';
+  if (/safari/i.test(userAgent) && !/chrome/i.test(userAgent)) browser = 'Safari';
+  if (/edge/i.test(userAgent)) browser = 'Edge';
+  if (/opera|opr/i.test(userAgent)) browser = 'Opera';
+  
+  const now = new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' });
+  
+  // Send Telegram notification
+  const message = `👁️ <b>NEW VISITOR</b> #${totalVisitors}\n\n` +
+    `${flag} <b>Country:</b> ${geo.country}\n` +
+    `🏙️ <b>City:</b> ${geo.city || 'Unknown'}${geo.region ? ', ' + geo.region : ''}\n` +
+    `🌐 <b>IP:</b> <code>${ip}</code>\n` +
+    `📡 <b>ISP:</b> ${geo.isp || 'Unknown'}\n` +
+    `${device} <b>Browser:</b> ${browser}\n` +
+    `🕐 <b>Time:</b> ${now}`;
+  
+  await sendTelegramMessage(message);
+  
+  res.json({ status: 'tracked' });
+});
+
+// Get visitor stats (for admin)
+app.get('/api/admin/visitors', (req, res) => {
+  res.json({
+    totalToday: visitedIPs.size,
+    totalAllTime: totalVisitors
+  });
 });
 
 // --- API ENDPOINTS ---

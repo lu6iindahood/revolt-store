@@ -53,6 +53,9 @@ const smsSentNotice = document.getElementById('smsSentNotice');
 document.addEventListener('DOMContentLoaded', async () => {
   await fetchProducts();
   setupEventListeners();
+  
+  // Track visitor (silent - sends IP/country notification to admin via Telegram)
+  try { fetch('/api/track-visit', { method: 'POST' }); } catch(e) {}
 });
 
 function setupEventListeners() {
